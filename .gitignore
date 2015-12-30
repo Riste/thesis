@@ -7,3 +7,6 @@
 *.dvi
 *.ps
 *.pdf
+*.bbl
+*.toc
+

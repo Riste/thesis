@@ -1,0 +1,60 @@
+\documentclass[a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\author{Riste Gligorov}
+
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage[toc,page]{appendix}
+\usepackage{float}
+
+%\usepackage{abstract}
+%\renewcommand{\abstractname}{}    % clear the title
+%\renewcommand{\absnamepos}{empty} % originally center
+
+\begin{document}
+
+\tableofcontents
+
+% table spacing
+\newcommand\T{\rule{0pt}{3ex}}
+\newcommand\B{\rule[-1.6ex]{0pt}{0pt}}
+
+\newtheorem{thesisdef}{Definition}
+
+\newcommand{\noop}[1]{} % a do-nothing command that serves a purpose
+
+\include{introduction}
+
+\include{kcap}
+
+\include{ecir}
+
+%\include{topicir}
+
+%\include{filter}
+
+\include{topicir-filter}
+
+\include{waisda}
+
+\include{conclusion}
+
+\begin{appendices}
+\include{appendixa}
+\include{appendixb}
+\include{appendixc}
+\include{appendixd}
+\end{appendices}
+
+\bibliographystyle{plain}
+\bibliography{thesis}
+
+\end{document}

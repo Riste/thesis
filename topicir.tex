@@ -1,0 +1,171 @@
+\chapter{User tags for topical search}\label{chap:topicir}
+\begin{quotation}
+\noindent
+In this chapter we continue our investigation of the usefulness of the user tags for search. In particular, we will study the effectiveness of the user tags for \textit{topical} search. Previous analysis performed by a senior cataloguer from the Institute for Sound and Vision ruled the user tags to be limited in scope, referring mainly to things seen or heard on the screen, and as such probably not suitable for topical search \cite{waisda-lotte,websciencepaper}. The fact that user tags predominantly describe objects and rarely scenes has also been confirmed by our study presented in Chap. \ref{chap:kcap}. In this chapter we will test this claim. To this end, we will reuse the same methodology as in Chap. \ref{chap:ecir}, namely \textit{quantitative system evaluation} \cite{vorhees}.
+\end{quotation}
+
+Retrieval of collection items that are about a given topic is widely considered as an important challenge in the video retrieval domain. In fact, the prominent video retrieval evaluation conference TRECVID features the known-item search task \cite{trecvid}. The crux of this task is  retrieving a known item for which the searcher believes to be in the collection. The search is carried out by formulating a textual (topical) query capturing what the searcher remembers about the video. Needless to say, it is important to find out whether the tags collected with \textit{Waisda?} can be exploited to support topic-based search.
+
+Central to the evaluation of the information retrieval performance is the notion of \textit{relevance}. Considering our focus on topical search, given an information need, represented by a query, throughout this chapter we will deem a video fragment to be relevant for the query if it is about the topic denoted by that query. The investigation of the usefulness of the user tags for topical search will be structured around addressing the following two research questions
+\begin{itemize}
+\item[RQ1] Can user tags, on their own or in combination with other types of metatada, improve video search?
+\item[RQ2] Does considering only verified user tags gives better video search performance than considering all user tags?
+\end{itemize}
+The reader may notice that the research questions are identical to the first two research questions from the previous chapter. This is indeed the case, however, with one important difference: the term \textit{search} in the previous chapter refers to \textit{visual} search whereas in this chapter with search we mean topical search. The reasons for committing to  these research questions remain the same as the ones stated in the previous chapter.
+
+
+The rest of the chapter is structured as follows. Section \ref{sec:approach} outlines our approach. In Sect. \ref{topicir:sec:eval-set} we describe the creation of the evaluation dataset. Section \ref{sec:topicir:se} presents the details of our experimental setup and Sect. \ref{sec:topicir:results} summarizes the results. Finally, the conclusions are presented in Sect. \ref{sec:topicir:con}.
+
+\section{Approach}\label{sec:approach}
+To answer the research questions stated above we shall use the same methodology as in Chap. \ref{chap:ecir}, namely, the quantitative system evaluation methodology.
+
+
+In the course of the study we again created an evaluation dataset that consists of three components: collection of video fragments, set of queries, and relevance judgements. The collection of video fragments was selected from the fragments that were tagged in \textit{Waisda?}. We reused the same set of queries from the evaluation dataset used in the visual search study and described in Sect. \ref{sec:eval-dataset}. The relevance judgements were created using the MBH tags, described in Sect. \ref{sec:video-metadata-collection}, as the ground truth for the topics covered in the video fragments. These steps are described in more detail in Sect. \ref{topicir:sec:eval-set}.
+
+
+We create a number of systems (search engines), run them against the evaluation dataset and compute retrieval performance metrics to assess the search effectiveness of the systems. The structure of all systems is the same: each system uses the same state-of-the-art probabilistic ranking function BM25, but indexes pairwise different combinations of metadata types. Thus, the only variations among the systems within an experiment is the input that they exploit for search\footnote{Again, we built the systems using the Xapian open source search engine library and did not vary the parameters for the BM25 function but used the defaults provided by Xapian.}. Much like the experimental setup in Chap. \ref{chap:ecir}, the combinations of metadata types that are indexed by the various systems are strategically chosen so that the resulting performance metrics from the evaluation dataset will provide answers to the research questions. Then, to get a better qualitative insight of what happens behind the scenes we also carry out a follow-up analysis of a sample of the results returned by the systems.
+
+\section{Evaluation Dataset}\label{topicir:sec:eval-set}
+In this section we describe the three components of our evaluation dataset: set of queries, set of video fragments, and relevance judgements.
+\subsection{Query set}
+As we already mentioned, in this study we reuse the same set of queries from the visual search study from Chap. \ref{chap:ecir}. The details can be found in Sect. \ref{sec:query-set}.
+
+\subsection{Fragment Set}
+The set of fragments for this particular experiment is selected from the MBH fragments tagged in \textit{Waisda?}, described in more detail in Sect. \ref{sec:video-metadata-collection}. To do a fair comparison of the search performance we select a subset from the entire collection of fragments. The selection criterion is as follows: only fragments that have at least one verified \textit{Waisda?} tag ascribed to them are considered. The resulting collection contains 2,562 fragments with accumulative duration of almost 123 hours of video material.
+The average fragment length is approximately 2.9 minutes and the median is 3.2 minutes. The duration of the shortest and the longest fragment in our collection is 0.1 and 25 minutes, respectively. The total number of user tags, verified user tags, and NCRV tags ascribed to the videos of these collection is 591,468, 355,522, and 28,248, respectively. Thus, the average number of user tags, verified user tags, and NCRV tags per fragment is 231, 139, and 11 respectively.
+
+\subsection{Topical Relevance Judgements}
+As we said earlier in Sect. \ref{sec:video-metadata-collection}, NCRV tags are in-house tags that describe the topics of the fragment with which they are associated. We consider the said NCRV tags as the ground truth about what topics are covered by the fragments.
+With this in mind, given a query $q$ and a fragment $f$, we deem $f$ to be topically relevant for $q$ if there is an NCRV tag that is equal with $q$, a synonym of $q$, or a hypernym of $q$. $Y$ is a hypernym of $X$ if every $X$ is a $Y$, for example canine is a hypernym of dog. Hyperonymy is a transitive relation \cite{wordnet}. More formally, the topical relevance relation is defined as follows
+\begin{align*}
+Topical\_Relevance &= \{(q,f)~|~\exists t~(t \in NCRV(f)~\wedge \\
+				  &(lower(q) = lower(t)~\vee \\
+				  &~synonym(lower(q), lower(t))~\vee \\
+				  &~hypernym(lower(t), lower(q))))\}
+\end{align*}
+where $NCRV(f)$ is the set of all NCRV tags associated with the fragment $f$, $lower(\cdot)$ is the lower case string function, $synonym(w_1, w_2)$ is a binary predicate which is true iff $w_1$ and $w_2$ are synonyms, and $hypernym(w_1, w_2)$ is a binary predicate which is true iff $w_1$ is a hypernym of $w_2$. 
+
+\section{Search Engines}\label{sec:topicir:se}
+To address the research questions stated above we created four search engines. Each of them utilizes the same state-of-the-art probabilistic ranking function BM25 and the only variation among them is the metadata they index and use as input for search. Consequently, differences in retrieval performance are attributed solely to the data. We implement search engines that index:
+
+\begin{tabular}{lll}
+ 1. & $SE_{user}$  & all \textit{Waisda?} tags \\
+ 2. & $SE_{vuser}$& only verified \textit{Waisda?} tags \\
+ 3. & $SE_{catalog}$&  NCRV catalog data \\
+ 4. & $SE_{user+catalog}$&  catalog data and all \textit{Waisda?}  tags \\
+\end{tabular}
+
+We did not consider captions here because we have them available only for a small subset of MBH fragments. Should we have used them in the study we would have had to settle for much smaller evaluation collection of fragments. In fact, for the sake of completeness, we carried out the same experiment on a smaller evaluation dataset including the captions. The details are presented in Appendix ??????. Naturally, we did not consider the NCRV tags either, since we used them as ground truth for topical relevance, their retrieval performance is nearly perfect.
+
+As said, the combinations of metadata types that are indexed by the various systems are strategically chosen so that the resulting performance metrics from the evaluation dataset will provide answers to the research questions. In fact, by comparing the performance of $SE_{user}$ and $SE_{vuser}$ we are able to see if using all tags as opposed to only verified tags is detrimental or beneficial for fragment search (\textit{RQ2}). Furthermore, comparing the performance of $SE_{user}$ and system 4 will reveal how well user tags are doing --- on their own and in combination --- compared to other types of metadata (\textit{RQ1}).
+
+\section{Results}\label{sec:topicir:results}
+
+\begin{table}[tb]
+\centering
+\begin{footnotesize}
+\begin{tabular}{l|l|l|l}
+\toprule
+System & MAP & Precision & Recall \\
+\hline
+$SE_{user}$ & $0.131^{\approx \uparrow}$ & $0.16^{\approx \downarrow}$ & $0.589^{\approx \uparrow}$ \\
+\hline
+$SE_{vuser}$ & $0.081^{\downarrow \approx}$ & $0.193^{\uparrow \approx}$ & $0.286^{\downarrow \approx}$ \\
+\hline
+$SE_{catalog}$ & $0.168^{\uparrow \uparrow}$ & $0.438^{\uparrow \uparrow}$ &	$0.291^{\downarrow \uparrow}$ \\
+\hline
+$SE_{user+catalog}$ & $0.151^{\uparrow \uparrow}$ & $0.17^{\uparrow \downarrow}$ & $0.654^{\uparrow \uparrow}$ \\
+\bottomrule
+\end{tabular}
+\caption{MAP/Precision/Recall scores for the search engines. $\uparrow$, $\downarrow$, and $\approx$ indicate if a score is significantly better, worse, or statistically indistinguishable from the MAP scores of $SE_{user}$ and $SE_{vuser}$, in that order.}
+\label{topicir:table:map-prec-rec}
+\end{footnotesize}
+\end{table}
+
+In this section we present the results of our study which assesses the retrieval effectiveness of \textit{Waisda?} tags with respect to topical relevance. Table \ref{topicir:table:map-prec-rec} summarizes our findings. Compared to the study from Chap. \ref{chap:ecir} where we looked at visual relevance, tables have, indeed, turned. As seen, the search performance of the user tags with respect to topical relevance is  worse than the search performance of the NCRV catalog data. Indeed, the performance of $SE_{user}$ is worse than the performance of $SE_{catalog}$ by 28\%. Moreover, combining the user tags with the catalog metadata only worsens the search performance. This is witnessed by the fact that $SE_{catalog}$ is better than $SE_{user+catalog}$ by 11\%. 
+The rather poor search performance of user tags with respect to topical relevance can be attributed to their relatively low search precision, only 0.16 (see Table \ref{topicir:table:map-prec-rec}). As a result, whenever they are combined with other metadata types the outcome is consistently worse as shown in Table \ref{topicir:table:map-prec-rec}.
+
+The results look even bleaker for the verified user tags. While they yield only marginally better search precision compared to all user tags, their recall is far worse (see Table \ref{topicir:table:map-prec-rec}). Consequently, $SE_{user}$ outperforms $SE_{vuser}$ by 62\% which suggests that considering all tags is better for search than limiting the scope only to verified tags.
+
+Looking at the results from the experiment on the smaller evaluation dataset from Appendix ????, we can conclude that while the captions perform better than the \textit{Waisda?} tags the catalog data outperforms them. In conclusion, when it comes to topical search the catalog data is the one to beat.
+
+\subsection{A Closer Look on Verified Tags}\label{topicir:qual-ana}
+What came out as a surprise from this study is the shortcoming of the verified tags when it comes to topical search. The initial expectations were that the consensus among the players reached on verified tags would result in tags that trustworthily describe the prominent aspects of the videos. However, the results presented above suggest that this is not the case.  To get a better qualitative insight of what happens behind the scenes we carry out an analysis of samples of the results returned by the system that indexes the verified \textit{Waisda?} tags. We analyse a sample of \textit{false positives} and a sample of \textit{true positives} returned by $SE_{vuser}$. Since we check for presence in captions we restrict to the subsets of false and true positives for which we have the captions available (see Sect. \ref{sec:video-metadata-collection} for more details).
+
+\subsubsection{False positives}
+
+\begin{table}[tb]
+\centering
+\begin{footnotesize}
+\begin{tabular}{l|r|r}
+\toprule
+ & Number & Average TF-IDF\\
+ \hline
+Only visual & 361 (67\%)& 22.302\\
+\hline
+Visual and in captions & 19 (3\%)& 55.793\\
+\hline
+Only in captions  & 161 (30\%)& 49.319\\
+\bottomrule
+\end{tabular}
+\caption{False positives analysis.}
+\label{topicir:table:false-pos}
+\end{footnotesize}
+\end{table}
+
+We start by analysing the false positives returned by the system that indexes the verified tags, $SE_{vuser}$. In the course of the analysis we classified the instances into three categories based on the content component--- audio, visual, or both--- to which the tag is referring. Namely, the tag responsible for the retrieval of the fragment refers to a concept that is \textit{visual only}, appears \textit{only in the captions}, and is \textit{both visual and in the captions}. Our hypothesis is that the tags referring to visual concepts will be responsible in larger part for the false positives than the tags appearing in the audio. In addition, we also compute the average TF-IDF (Term Frequency - Inverse Document Frequency) for the tags in each of the categories. TF-IDF is a numerical statistics which reflects how important a term is to a document in a collection or corpus \cite{tfidf1,tfidf2}. The results of the analysis are summarized in Table \ref{topicir:table:false-pos}. As we can see, the total number of analysed instances is 541. Our suspicion is indeed confirmed, the majority of the false positives, about 67\%, are caused by tags referring to concepts that are only visually depicted. Around 30\% of the false positives are caused by tags that appear only in the audio component of the content. The remaining 3\% are caused by tags present both in audio and visual part of the content. Interestingly, it seems that the tags which are present in the audio and refer to a concept that appears visually are less likely to yield false positives. Their presence in both the audio and visual component is a strong indication that they are denoting salient aspects of the content. This is witnessed even more by the fact that this category has the highest average TF-IDF score which is as we said earlier a measure for importance of a term for a document\footnote{In our case the ``document" is the bag of tags associated with the fragment.}.
+
+\subsubsection{True positives}
+
+\begin{table}[tb]
+\centering
+\begin{footnotesize}
+\begin{tabular}{l|r|r}
+\toprule
+ & Number & Average TF-IDF\\
+ \hline
+Only visual & 20 (27\%)& 50.195\\
+\hline
+Visual and in captions& 33 (45\%)& 60.185\\
+\hline
+Only in captions  & 21 (28\%)& 96.182\\
+\bottomrule
+\end{tabular}
+\caption{True positives analysis.}
+\label{topicir:table:true-pos}
+\end{footnotesize}
+\end{table}
+
+\begin{table}
+\centering
+\begin{footnotesize}
+\begin{tabular}{l|r|r|r|r|r|r}
+\toprule
+ & \multicolumn{3}{|c|}{\textbf{True positives}} & \multicolumn{3}{c}{\textbf{False positives}}\\
+ \hline
+  & \textit{Abstract} & General & Specific & Abstract & General & Specific\\
+\hline
+Who & & 7& 20& &31 &1\\
+\hline
+What &4 &34 & &37 & 377&\\
+\hline
+Where & & 3&6 & &63 &68\\
+\hline
+When & & & & & &1\\
+\bottomrule
+\end{tabular}
+\caption{Classification of positives.}
+\label{topicir:table:pan-shat}
+\end{footnotesize}
+\end{table}
+
+In this section we continue our analysis with the true positives returned by the system $SE_{vuser}$. We took the same steps as in the analysis of the false positives described in the previous section. The results are summarised in Table \ref{topicir:table:true-pos}. The total number of analysed instances is 74. The figures are following the same trend as the figures for the false positives analysis documented in Table \ref{topicir:table:false-pos}. The tags that are present in the captions and represent concepts depicted visually make the category that yields the highest number of true positives, 45\%. Around 28\% of the true positives are result of tags which are present only in the captions. The remaining 27\% are yielded by tags that denote concepts depicted only visually. Again, the category of tags found both in the audio and visual component have the highest TF-IDF score.
+
+We also classified the positives using the Panofsky-Shatford model described in Sect. \ref{tag_class_framework}. More precisely, we classified the tags that led to the hit with respect to the returned video fragment. The results from the classification are summarized in Table \ref{topicir:table:pan-shat}. It is interesting to note the disproportionally large number of false positives compared to the number of true positives for the \textit{What} and \textit{Where} facet. This suggests that verified tags that refer to \textit{locations} and \textit{objects}\footnote{Most of the tags classified under the \textit{What} facet refer to objects.}
+are particularly unsuited for topical search.
+
+After analysing the true and false positives, the general conclusion is that the verified tags usually refer to the more ``obvious", more noticeable, aspects of the content. For example, moving objects in the background or in the foreground, prominent stationary objects, or words from dialog are among the things the verified tags denote. This is hardly surprising, after all these are things that are easy to reach consensus on and ultimately that is the goal of the game from the perspective of the players. 
+
+\section{Conclusions}\label{sec:topicir:con}
+In this chapter we have studied the added value of user tags for topical video search.
+The search performance of user tags with respect to topical relevance leaves much to be desired. In fact, while the search recall of the user tags is relatively satisfactory the precision is rather poor. This shows that a significant portion of the topics are indeed captured by the user tags. However, there are also many user tags that do not pertain to the subject (\textit{semantics}) of the video, but refer to the more \textit{syntactic} aspects such as what is \textit{seen} or \textit{heard}. It is the latter group that is responsible for the false positives and thereby hurting the search precision. Therefore, if user tags are to be used for topical search, a preprocessing step is required that will identify and filter out the syntactic user tags. This is something that we will spend more time on in the next chapter.
