@@ -1,0 +1,9 @@
+.DS_Store
+*.aux
+*~
+*.pdfsync
+*.blg
+*.log
+*.dvi
+*.ps
+*.pdf
