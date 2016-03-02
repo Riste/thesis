@@ -36,7 +36,7 @@ The overall problem statement for this research is as follows.
 
 To successfully integrate user-generated tags into AV collections' workflows a better understanding of their characteristics, compared to preexisting professionals annotations, is required. In particular,  the terminology that users employ when describing videos  and the aspects of the video that they usually describe. The first research question, therefore, is
 \begin{itemize}
-	\item[1.] What are the relationships between user-generated tags  and professional annotations in terms of what they describe and the vocabulary?
+	\item[1.] What are the relationships between user-generated tags  and professional annotations in terms of the vocabulary and what they describe?
 \end{itemize}
 Locating a fragment within a video is an important use case in AV collections for which the fine-grained user tags could potentially provide an added value. Thus, the second research question addresses the usefulness aspect of user tags in terms of locating fragments within a video.
 \begin{itemize}
@@ -80,9 +80,10 @@ In \cite{Truong:2012:CSK:2324796.2324808,Li:2008:LTR:1460096.1460126} neighbour 
 Probabilistic methods that exploit random walk based techniques have also been explored \cite{Wang:2006:IAR:1180639.1180774,Liu:2009:TR:1526709.1526757,Li:2012:TRP:2382336.2382380}. These methods produce a ranking of the tags according to their relevance with respect to the image with which they are associated. The tag relevance estimations are computed as the stationary or the convergence probabilities of  a random walk processes. Notable example of this approach is the PageRank algorithm \cite{journals/corr/abs-1012-4872,10.4137/GRSB.S702,junker2008analysis}. Another group of methods exploit background knowledge (such as the lexical database Wordnet and a massive corpus indexed by Google) to perform the refinement of the image annotations \cite{Jin:2010:KBI:1731523.1731529,Wang:2007:RIA:1282280.1282343}. The semantic relations encoded in Wordnet and the semantic similarity quantified by the Google-based measures like the Normalized Google Distance \cite{DBLP:journals/corr/abs-cs-0412098} provide contextual evidence for the relationship among the annotations. This evidence is then used as an input for machine learning algorithms which give the final word for the quality of the annotations.
 
 \section{Approach}
-In this section we outline the approach to answer the research questions stated above. The specific approach for each of the research questions is described in separate subsection. The order of the subsections is respective to the order in which the research questions are stated in section \ref{sec:research-questions}.
+In this section we outline the approach to answer the research questions stated above. The specific approach for each of the research questions is described in separate subsection. The order of the subsections is respective to the order in which the research questions are stated in section \ref{sec:research-questions}. At the basis of each of the approaches lies \textit{Waisda?} which was used as a data-collection tool. In the course of this thesis significant effort went into improving the game design and development of software extension that enables seamless integration of the game into larger workflows. Chapter \ref{chap:waisda} describes the game in more detail and outlines the contributions of this thesis with respect to the development of the game.
+
 \subsection{Waisda? User Tags vs. Professional Annotations}\label{sec:user-professional}
-To answer the first research question `What are the relationships between user-generated tags  and professional annotations in terms of what they describe and the vocabulary used?' we perform two studies. Details can be found in \cite{websciencepaper,kcap}.
+To answer the first research question `What are the relationships between user-generated tags  and professional annotations in terms of the vocabulary and what they describe?' we perform two studies. Details can be found in \cite{websciencepaper,kcap}.
 
 The first study is a quantitative data analysis of the entire tag collection gathered with \textit{Waisda?} during the first six months after the game was deployed. In order to estimate the lower bound of the fraction of user tags that are meaningful words, we examine the overlap between them and general lexical resources and vocabularies. Furthermore, to determine if users and professionals use different vocabularies when describing videos, we investigate the overlap between all user tags and a typical domain thesaurus used by professionals in the cataloging process. The results from the study show that there is, indeed, a terminological gap between users and professionals; while approximately 89\% of all user tags are meaningful words only 8\% of them were found in the domain thesaurus used by professionals.
 
@@ -114,24 +115,20 @@ An alternative is to creating an evaluation dataset is using an existing one. Th
 Our supposition is that any characterization of quality of the user tags is largely determined by how different institutions will use them. In other words, it is immaterial to talk about tag quality without a specific application scenario in mind. Fragment search within video is widely recognized as an application scenario of particular business importance in the AV collections world. For these reasons, our characterization(s) of tag quality will be limited to this scenario.  Some of the aspects we plan to investigate in the context of the retrieval scenario are tag frequency and discriminative power of tags,  correlation between reputation of players and tag relevance,  semantic ambiguity of tags, overlap with transcripts,  etc. The exact specifics of this study will be determined by the outcome of the previous studies. Therefore, we plan to make the choice of research methodology and the type of output (e.g. quantitative metrics or set of recommendations) this study will provide after the fragment retrieval study is performed.
 
 \section{Contributions}
-Contribution from the study described in section \ref{sec:user-professional}.
+The main contributions of the thesis are:
 \begin{itemize}
 \item A method to analyze quantitatively the overlap between user and professional terminology exploited in video annotation.
-\item A method of qualitative analysis of samples of user tags to establish the facets---\textit{who}, \textit{what}, \textit{where}, and \textit{when}--- of videos typically described by users and the level of specificity---\textit{abstract}, \textit{generic}, and \textit{specific}---of tags.
-\end{itemize}
-Contribution from the study described in section \ref{sec:fragment-search}.
-\begin{itemize}
-\item A method to design a dataset ---including fragments, queries, and relevance judgments --- for evaluating the added value of user tags in terms of fragment retrieval.
-\item Evaluation dataset which will contain fragments, user tags from \textit{Waisda?} collection, queries, and relevance judgments.
-\item Quantitative evaluation of the added value of user tags in terms of fragment retrieval.
-\end{itemize}
-%Contribution from the study described in section \ref{sec:topical-desc}
-%\begin{itemize}
-%\item Algorithm for deriving topical descriptions for scenes obtained from user tags.
-%\item Quantitative analysis of the added value of the derived topical description for fragment retrieval.
-%\end{itemize}
-Contribution from the study described in section \ref{sec:quality}
-\begin{itemize}
-\item Quality metrics or guidelines for accessing the quality of user tags with respect to fragment retrieval.
+\item Qualitative analysis of the aspects of the video content which are described by the game tags i.e. \textit{what do game tags describe in a video and how}.
+\item A method to design a dataset ---including fragments, queries, and relevance judgements --- for evaluating the added value of user tags for \textit{visual} and \textit{topical} video search.
+\item Two evaluation datasets ---one for visual and one for topical search --- which contain fragments, user tags from \textit{Waisda?} collection, queries, and relevance judgements.
+\item Quantitative evaluation of the added value of the game tags in terms of \textit{visual} and \textit{topical} video search.
+
+\item A method for qualitative analysis/classification of the search results in the context of visual search. The aim of the analysis was to discover the types of tags that are generally responsible for false positives.
+
+\item Qualitative analysis of the search results in the context of topical search. The aim of the analysis was to discover tagging practices that generally produce relevant topical tags.
+
+\item Evaluation of tag-related measures for accessing the quality of the game tags as topical descriptors in the context of topical video search.
+
+\item Development of extension module for \textit{Waisda?} which enables integration of the game in AV collection workflows. The module is part of the latest release of \textit{Waisda?} which is available online\footnote{The Waisda? source code and documentation is available from Github \url{http://github.com/beeldengeluid/waisda}}.
 \end{itemize}
 
