@@ -31,8 +31,8 @@ When GWAPs are used to tag large video collections generally care must be taken 
 \item[RQ3] How does the game tag search performance change when tags are added?
 \end{itemize}
 
-The rest of the paper is structured as follows.  After discussing related work, Sect. \ref{sec:approach} presents our approach. 
-Section \ref{sec:materials} describes the datasets and resources that are used in our study. 
+The rest of the paper is structured as follows.  After discussing related work, Sect. \ref{ecir:sec:approach} presents our approach. 
+Section \ref{ecir:sec:materials} describes the datasets and resources that are used in our study. 
 %Section \ref{sec:eval-dataset} outlines our evaluation dataset. 
 Section \ref{sec:experimental-setup} introduces the experimental setup. Finally, Sect. \ref{sec:results} and \ref{sec:conclusions} present the results and conclusions of this study, respectively.
 
@@ -42,7 +42,7 @@ Section \ref{sec:experimental-setup} introduces the experimental setup. Finally,
 \paragraph{Relevance judgements and search.}Designing ground truth in the form of document relevance w.r.t. a given topic has been playing a central role ever since Cranfield experiments gained prominence\cite{vorhees}. The leading actor in IR benchmarking is TREC\footnote{\url{http://trec.nist.gov/}} which employs substantial manpower in creating the ground truth. For organizations lacking the manpower, crowdsourcing is an alternative; \cite{rjturk1,rjturk2} showed that this task can be reliably fulfilled by crowd workers. Alternatively, Eickhoff et al. gamified the task resulting in increased reliability and reduced cost \cite{rjgame}. In this study we also rely on the crowd; the relevance assessment is outsourced to targeted fan groups.\\
 Search based on user-generated metadata, in particular folksonomies, has been studied before. Morrison compared the search performance of folksonomies from social bookmarking web sites against search engines and subject directories \cite{morison}, showing that search engines had the highest precision and recall rates. Folksonomies, however, performed surprisingly well. Geisler and Burns state that YouTube tags provide added value for search, because 66\% of them do not appear in  other metadata \cite{youtube}. Hildebrand et al. proposed and investigated a semi-automatic process of assigning explicit meaning to game tags for video by linking them to concepts from the Linked Open Data cloud \cite{michiel}. To the best of our knowledge, no work has been done to evaluate the performance of GWAP data for video search. Our study aims to fill this void.
 
-\section{Approach}\label{sec:approach}
+\section{Approach}\label{ecir:sec:approach}
 In order to assess the added value of game tags for video search we use a quantitative system evaluation methodology \cite{vorhees}, for which we need a document collection (in our setting video fragments tagged by users in \textit{Waisda?}), a set of representative queries, and relevance judgements.
 % System evaluation requires collection of ``documents" (in our case video fragments), set of queries, and relevance judgements indicating which ``documents" in the collection should be returned for each query. 
 %For this study we create our own evaluation dataset. Alternatively, we could have used one provided by the various video retrieval evaluation initiatives like TRECVID\footnote{\url{http://trecvid.nist.gov/}}. However, \textit{Waisda?}-like games have not been run yet on these datasets and setting up such a game and attracting sufficient number of users could turn out to be a challenge.
@@ -52,7 +52,7 @@ In the second experiment, we study the search performance of game tags over time
 
 % The first experiment, described in Section \ref{sec:experiment1-setup}, addresses the first two research questions and the second experiment, presented in Section \ref{sec:experiment2-setup}, addresses the third research question. In both experiments, we create a number of systems (search engines), run them against our evaluation dataset, and compute retrieval performance metrics to assess their performance. All systems use the same state-of-the-art probabilistic ranking function BM25 \cite{bm25} and the only variation among them is the metadata that they index. This way differences in performance can be attributed exclusively to the metadata. Besides the game tags, we exploit the following types of metadata: (i) the existing collection metadata in a form of tags and textual descriptions, and (ii) subtitles (closed captions) associated with the videos. Detailed description of the different metadata types is provided in Section \ref{sec:video-metadata}.
 
-\section{Datasets and Resources}\label{sec:materials}
+\section{Datasets and Resources}\label{ecir:sec:materials}
 In this section we describe the datasets and resources that are used in the study.
 \subsection{The MBH Video and Metadata Collection}\label{sec:video-metadata-collection}
 At the time of writing, \textit{Waisda?} is used to % is in its second release. In this release the collection of fragments that are tagged by players originates from 
