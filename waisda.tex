@@ -18,6 +18,13 @@ When both players provide the same label for an image, they score points and pro
 The open source version of Waisda? enables maintainers of an online video collection to start their own crowdsourcing initiative for time-based annotations. In particular, we believe that Waisda? is a valuable tool for cultural heritage institutions, as it provides a novel and engaging way for the public to access and interact with the audiovisual material.
 
 In the rest of this chapter we shall describe the gameplay and the user interface of \textit{Waisda?}, explain the software architecture, and give examples of successful deployment of \textit{Waisda?} by third parties. In the final section we outline the results and efforts from this thesis that had an impact on the development of \textit{Waisda?}.
+We conclude this section with a list of the awards\footnote{The list of awards is complete up to the time of writing.} given to the \textit{Waisda?} project 
+\begin{itemize}
+\item \textit{Waisda?} won the \textit{Best Archives on the Web} award in the category \textit{Best Use of Crowdsourcing} in 2010.
+\item \textit{Waisda?} won the \textit{EuroITV Competition Grand Challenge} in 2010.
+\item \textit{Waisda?} won the \textit{TIMAF European Best Practices} award in 2009
+\end{itemize}
+
 
 \section{Gameplay and User Interface}
 The gameplay of Waisda? is straightforward: the player first selects a video from the \textit{Homepage}, plays the \textit{Game} by watching the video and entering tags, and finally studies the results in the \textit{Game recap} to learn what he/she can improve in future games.
@@ -95,14 +102,7 @@ The default user interface of \textit{Waisda?} is completely functional. In addi
 In this section we present several examples of deployments of \textit{Waisda?} in the wild.
 
 \subsection{Europeana}\label{sec:waisda-europeana}
-Perhaps the most notable deployment of \textit{Waisda?} is in the context of the Europeana project\footnote{\url{http://www.europeana.eu/}}. Europeana is an internet portal that provides multi-lingual access to millions of books, paintings, films, museum objects and archival records that have been digitised throughout Europe. More than 2,000 institutions across Europe have contributed to Europeana. These range from major international names like the Rijksmuseum in Amsterdam\footnote{\url{https://www.rijksmuseum.nl/}}, the British Library\footnote{\url{http://www.bl.uk/}} and the Louvre\footnote{\url{http://www.louvre.fr/}} to regional archives and local museums from every member of the European Union. Together, their assembled collections let users explore Europe's cultural and scientific heritage from prehistory to the modern day. The Europeana project incorporates the tools, solutions, and preservation practices developed in the PrestoPRIME project. One of the main contributions of the PrestoPRIME project incorporated in Europeana is an OAIS-compliant preservation framework capable of supporting the whole range of digital preservation operations in the long term. \textit{Waisda?} is integrated in the workflows and processes included in this framework that deal with user-generated annotations for videos. In order to provide programmable interaction between \textit{Waisda?} and the other systems in the framework, in the scope of this thesis, an extension module of \textit{Waisda?} was developed. The module is comprised of a number of web services that together allow for the integration of user annotations into an audiovisual preservation workflow. It is available as a GIT repository at \url{git://eculture.cs.vu.nl/home/git/pprime/waisda.git}. This repository contains the full version of \textit{Waisda?} and the extension files. The module contains the following web services
-\begin{itemize}
-\item \textit{Video submission service}. Using this service new videos are added to \textit{Waisda?}. A user of the service should provide basic video metadata, such as the title, duration, URL from which the video can be streamed. The video source itself is not uploaded to \textit{Waisda?}, instead the video is streamed from the provided URL.
-
-\item \textit{Video update service}. Using this service the metadata of videos already within Waisda? can be changed.
-
-\item \textit{Video export service}. Using this service all tags for a specific video can be exported in the lightweight highly-portable data-interchange JSON\footnote{\url{http://www.json.org/}} format. The data being exported can be limited to tag entries after a certain timestamp, enabling efficient sync mechanisms.
-\end{itemize}
+Perhaps the most notable deployment of \textit{Waisda?} is in the context of the Europeana project\footnote{\url{http://www.europeana.eu/}}. Europeana is an internet portal that provides multi-lingual access to millions of books, paintings, films, museum objects and archival records that have been digitised throughout Europe. More than 2,000 institutions across Europe have contributed to Europeana. These range from major international names like the Rijksmuseum in Amsterdam\footnote{\url{https://www.rijksmuseum.nl/}}, the British Library\footnote{\url{http://www.bl.uk/}} and the Louvre\footnote{\url{http://www.louvre.fr/}} to regional archives and local museums from every member of the European Union. Together, their assembled collections let users explore Europe's cultural and scientific heritage from prehistory to the modern day. The Europeana project incorporates the tools, solutions, and preservation practices developed in the PrestoPRIME project\footnote{As mentioned already \textit{Waisda?} is one of the deliverables of the PrestoPRIME project.The publicly available deliverable report can be found at \cite{prestoprime-report}.}. One of the main contributions of the PrestoPRIME project incorporated in Europeana is an OAIS-compliant preservation framework capable of supporting the whole range of digital preservation operations in the long term. \textit{Waisda?} is integrated in the workflows and processes included in this framework that deal with user-generated annotations for videos. In order to provide programmable interaction between \textit{Waisda?} and the other systems in the framework, in the scope of this thesis, an extension module of \textit{Waisda?} was developed. The module consists of a number of web services that enable \textit{adding}/\textit{updating} videos that are to be tagged in the game and \textit{extracting} the collected tags in a light-weight and highly-portable textual format. More details on this can be found in section \ref{chap:waisda:thesis-soft}.
 
 \subsection{Spotvogel}
 Another application of \textit{Waisda?} is the so-called \textit{Spotvogel}\footnote{\url{http://spotvogel.vroegevogels.vara.nl/}} which translates to \textit{mocking bird} from Dutch. \textit{Spotvogel} was deployed by the Dutch broadcaster VARA\footnote{\url{http://www.vara.nl/}} and the S\&V institute with the aim of collecting user tags for the footage from the Dutch television program \textit{Vroege Vogels}\footnote{\url{http://spotvogel.vroegevogels.vara.nl/}} (Early Birds in Dutch) which is about wildlife. The goal of the game from the perspective of the players is to identify and tag occurrences of birds and other wildlife in the footage. The players are encouraged to be as specific as possible when identifying the species of the wildlife they are tagging. For example, a tag such as ``long-eared bat" yields more points than the more generic tag ``bat". This is achieved by using controlled vocabulary which contains various names of bird species. Whenever a player enters a recognizable bird species name she or he is awarded extra points. This positive reinforcement is meant to stimulate and reinforce this kind of tagging behaviour in players. The broadcaster VARA counts on the collected tags to increase the accessibility and the searchability of their archive. 
@@ -112,19 +112,104 @@ This example differs from the previous ones in the fact that in this case \texti
 
 \section{Thesis Contributions} 
 In the final section we outline the contributions of this thesis for the development of \textit{Waisda?} which fall into two areas \textit{software development} and \textit{game design}.
-\subsection{Software Development}
-As we mentioned already in Section \ref{sec:waisda-europeana} \textit{Waisda?} has been integrated into the framework that fuels the Europeana internet portal. In order to provide programmable interaction between \textit{Waisda?} and the other systems in the framework, we developed an extension module of \textit{Waisda?}. The module consists of a number of web services that enable \textit{adding}/\textit{updating} videos that are to be tagged in the game and \textit{extracting} the collected tags in a light-weight and highly-portable textual format. It should be noted that the web services are not bound to the Europeana environment and can be seamlessly integrated in any system or workflow. The only requirement is that the system ought to honour the contract defined by the web services when calling them.
-\subsection{Game Design}
+\subsection{Software Development}\label{chap:waisda:thesis-soft}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=\columnwidth]{waisda-diagram} 
+\caption{\textit{Waisda?} architectural diagram: interaction among \textit{Waisda?} core, the extension module, and external systems.}
+\label{waisda-diagram}
+\end{figure}
+
+As we mentioned already in Section \ref{sec:waisda-europeana} \textit{Waisda?} has been integrated into the framework that fuels the Europeana internet portal. In order to provide programmable interaction between \textit{Waisda?} and the other systems in the framework, we developed an extension module of \textit{Waisda?}. The module has been developed in Java programming language and uses the same technology stack as the Waisda? core. In particular, the application logic is implemented in the open-source Spring framework and the access to the database is facilitated by the Java Persistence API and Hibernate. Figure \ref{waisda-diagram} shows the architecture overview and the flow of data among the \textit{Waisda?} core, the module, and external systems. The \textit{Waisda?} core and the module communicate through shared database. Both components read and write data to the same underlying MySQL database. In literature, this is referred to as \textit{shared database} enterprise integration pattern \cite{Hohpe:2003:EIP:940308}. All communication to the outside world goes through the module which acts as a gateway. External systems read and write data using the services defined by the module. External systems and the module exchange messages encoded in the lightweight highly-portable data-interchange JSON\footnote{\url{http://www.json.org/}} format. This allows for high-level of decoupling and interoperability between \textit{Waisda?} and external systems which can be implemented in any programming language without any knowledge about the underlaying technical details of \textit{Waisda?}.
+
+The module consists of the following services
+
+\begin{figure}
+\centering
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+	"title": "American flamingo",
+	"playerType": "JW",
+	"sourceUrl": "http://goo.gl/Jw577N",
+	"fragmentID": 1,
+	"imageUrl":"https://goo.gl/NmBq47",
+	"enabled": true,
+	"startTime": 0,
+	"duration": 740000
+}
+\end{lstlisting}
+\caption{JSON data request payload for \textit{video submission/update} web services. The data payload consists of metadata for the video that is to be submitted/updated, respectively.}
+\label{chap:waisda:add-update-json}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+	"fragmentID": 1,
+	"enabled": true,
+]
+\end{lstlisting}
+\caption{JSON data request payload for \textit{enable videos for tagging} web service. The data payload consists of an object which contains \textit{fragmentId} which identifies the video to be acted on and \textit{enabled} flag.}
+\label{chap:waisda:enable-json}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+	"fragmentID": 1,
+	"timestamp": 2017-03-13T19:55:07+00:00,
+}
+\end{lstlisting}
+\caption{JSON data request payload for \textit{export tags for video} web service. The data payload consists of an object which contain \textit{fragmentId} which identifies the video and optional timestamp.}
+\label{chap:waisda:export-json}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{lstlisting}[language=json,firstnumber=1]
+[{
+	"tag": "flamingos",
+	"videoTime": 3000,
+	"tag_id": 1
+	"player_id": 42
+},
+	.
+	.
+	.
+{
+	"tag": "beach",
+	"videoTime": 45000,
+	"tag_id": 28
+	"player_id": 1014
+}]
+\end{lstlisting}
+\caption{JSON data response payload for \textit{export tags for video} web service. The data payload consists of an array of tags entered after the specified timestamp.}
+\label{chap:waisda:export-json-result}
+\end{figure}
+
+\begin{itemize}
+\item \textit{Video submission service}. Using this service external systems can add new videos for tagging in \textit{Waisda?}. Figure \ref{chap:waisda:add-update-json} shows the format of the JSON message that is expected by this service. As seen, the external system needs to provide basic video metadata, such as the title, duration, URL from which the video can be streamed, fragment ID used to identify the video subsequently, video player type, etc. It should be noted that the video itself is not uploaded to \textit{Waisda?}, instead the video is streamed from the provided URL. When calling this service it is assumed that no other video with the provided fragment ID exists already. Failing to comply with this requirement will result in an error.
+
+\item \textit{Video update service}. Using this service the metadata of videos already within Waisda? can be changed. This service accepts the same type of JSON message as the submission service above. It is assumed that video with the specified fragment ID exists already. If this condition is satisfied error will arise.
+
+\item \textit{Video enable/disable service}. Using this service external system can \textit{enable/disable} video for tagging in Waisda?. Figure \ref{chap:waisda:export-json} shows the format of the JSON message that is expected by the service. The fragment ID of an already existing video in the system needs to be provided along with the flag that determines whether the video should be enabled or disabled.
+
+\item \textit{Video tags export service}. Using this service all tags for a specific video can be exported in the lightweight highly-portable data-interchange JSON format. The data being exported can be limited to tag entries after a certain timestamp, enabling efficient sync mechanisms. Figure \ref{chap:waisda:export-json} shows the format of the JSON message expected by this service. External systems need to provide a fragment ID of an existing video in the system and an optional time-stamp. If a time-stamp is provided all tags for the video entered after the specified time-stamp will be returned. Otherwise, all tags for the video will be returned. Caller external systems are advised to provide a time-stamp to reduce the number of tags returned. This is merely an optimization step. Figure \ref{chap:waisda:export-json-result} shows the format of the result returned by this service.
+\end{itemize}
+
+It should be noted that while initially developed for the Europeana environment these services are not bound to it in any way and can be seamlessly integrated in any system or workflow. The only requirement is that the external systems ought to honor the contract defined by the services when calling them. The services provide basic set operations which can be used to implement more complex real-life scenarios involving \textit{Waisda?} as a crowdsourcing tool for collecting video annotations.
+\subsection{Game Design}\label{chap:waisda:game-design}
 The development of \textit{Waisda?} proceeded in two iterations. After the first pilot was launched the follow up analyses of the collected tags \cite{Annelies,ecir} and user evaluations suggested potential areas of improvement. The suggestions were incorporated into the game design and the second, which is also the current, version of \textit{Waisda?} was rolled out.
 
 One for the follow up studies \cite{ecir} was carried out in the context of this thesis and it is covered in detail in Chapter \ref{chap:ecir}. In this study we noticed limitations or the game tags collected in the first pilot. One limitation is the low number of specific type of tags in the \textit{who} and \textit{where} facets i.e. \textit{persons} and \textit{locations}. We showed that by matching the tags to controlled vocabularies we can derive the type of the tags (person, location, organization, etc.). We suggested a modification in the scoring mechanism where the players are awarded extra points for entering specific types of tags e.g. persons or locations (see Section \ref{sec:waisda-game} for details). This positive reinforcement is meant to stimulate and reinforce this kind of tagging behaviour in players. Another limitation of the first version of \textit{Waisda?} was the way the tags entered by different players were compared, which was basically a case-insensitive string comparison. We suggested extension of the matching mechanism where synonyms, hyponyms, and hyperonyms would also be considered a match (see Section \ref{sec:waisda-game} for details). Both suggestions were green-lighted and are now part of \textit{Waisda?}.
 
-The other follow up study \cite{Annelies} was conducted together with Annelies van Ees in the context of her master thesis project. The aim of the study was to determine factors that motivate people to play a video tagging game such as \textit{Waisda?}. The conclusion of the study was that players are more inclined to play when videos are shorter and more feedback is provided. The feedback in this case was in the form or game recap once the game is finished. Based on these findings the second pilot included short videos\footnote{The average duration of the videos in the collection was $3.3$ minutes and the median was $3.6$ minutes.} and also featured a game recap screen (see Figure \ref{recap} for details).  
+The other follow up study \cite{Annelies} was conducted together with Annelies van Ees in the context of her master thesis project. The aim of the study was to determine factors that motivate people to play a video tagging game such as \textit{Waisda?}. The conclusion of the study was that players are more inclined to play when videos are shorter and more feedback is provided. The feedback in this case was in the form or game recap once the game is finished. Based on these findings the second pilot included short videos\footnote{The average duration of the videos in the collection was $3.3$ minutes and the median was $3.6$ minutes.} and also featured a game recap screen (see Figure \ref{recap} for details).
 
-\section{Awards}
-We conclude this chapter with a list of the awards\footnote{The list of awards is complete up to the time of writing.} given to the \textit{Waisda?} project 
-\begin{itemize}
-\item \textit{Waisda?} won the \textit{Best Archives on the Web} award in the category \textit{Best Use of Crowdsourcing} in 2010.
-\item \textit{Waisda?} won the \textit{EuroITV Competition Grand Challenge} in 2010.
-\item \textit{Waisda?} won the \textit{TIMAF European Best Practices} award in 2009
-\end{itemize}
+\section{Conclusion}
+In this chapter we described Waisda which is an open-source crowdsourcing tool that can be deployed by audio-visual collection owners to annotate their collection items. We outlined the main technological aspects of the game, the gameplay, and the key UI features. At the time of writing, the latest release of Waisda is a mature, production-grade, customizable GWAP with a diverse usage. Many aspects of the game can be customized, such as the UI and tag matching mechanisms, in order to fit various application scenarios. 
+
+As part of this thesis, an extension module to \textit{Waisda?} was developed which enables seamless integration of the game in broader audio-visual workflows. The module features a set of high-level services which hide the underlying technological complexity  and provide communication in the light-weight and highly-portable JSON textual format. The services offer support for the basic \textit{add}, \textit{update}, \textit{read}, and \textit{enable/disable} operations which serve as a basis on which more complex integration scenarios can be built. Having said that, and considering the results from Chapters \ref{chap:ecir} and \ref{chap:topicir-filter} \textit{Waisda?} is valuable tool at the disposal of the audio-visual collection owners which provides cost-effective way of obtaining community-centric video annotations.
