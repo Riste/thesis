@@ -36,7 +36,7 @@ classify the tags from a small number of videos. Using an existing
 classification model, we show the relation between the content in the video
 that is described and the type of tags that are used for these descriptions.
 
-The rest of the paper is structured as follows. Section \ref{sec:related_work}
+The rest of this chapter is structured as follows. Section \ref{sec:related_work}
 discusses related work. Section \ref{kcap:sec:approach} presents the approach we
 take in tackling the goals we set forth. Section \ref{kcap:sec:materials} describes
 the materials we used in our study. Section \ref{sec:experiments} reports on
@@ -245,7 +245,7 @@ Cornetto is a lexical semantic database of Dutch that contains 40K entries, incl
 For the manual classification the number of programs in the \emph{Waisda?} is
 too large to include all of them. In addition, subtitles are not available for
 all videos. Therefore, for the manual classification and comparison with the
-subtitles we opted for select a subset. We selected five episodes: the two
+subtitles we opted to use a subset of videos. We selected five episodes: the two
 best-tagged videos, one averagely tagged video and two low-tagged videos. The
 two best-tagged videos are episodes from a popular Dutch reality show,
 \textit{Farmer seeks Wife}\footnote{http://www.bzv.kro.nl/}, categorized as
@@ -289,11 +289,11 @@ The Walk \B &257& 45&\textit{Religious}\\
 For the comparison of the tags with the audio signal we make use of the
 subtitle files associated with the television programs. Subtitles are textual
 versions of the dialog in films and television programs, usually displayed at
-the bottom of the screen\footnote{Timed Text Working Group,\\ http://www.w3.org/AudioVideo/TT/}. Each dialog excerpt is accompanied with
+the bottom of the screen\footnote{Timed Text Working Group, \url{http://www.w3.org/AudioVideo/TT/}}. Each dialog excerpt is accompanied with
 time-points --- relative to the beginning of the video --- when the dialog
 excerpt appears on and disappears from the screen. The subtitles files we use
 were obtained from KRO broadcasting and are specified in the SubRip text file
-format\footnote{http://en.wikipedia.org/wiki/SubRip\#SubRip\_text\_file\_\\format}.
+format\footnote{\url{http://en.wikipedia.org/wiki/SubRip\#SubRip\_text\_file\_format}}.
 
 \section{Experiments}\label{sec:experiments}
 
@@ -378,7 +378,7 @@ subject terms from GTAA, but also a large number of tags could be matched to
 locations and names. The overlap with Cornetto shows that most tags are
 matched to nouns. Surprisingly, there is also a substantial number of tags
 matched with adjectives. In fact, one of the most frequently occurring tags is
-the adjective, nice.
+the adjective \textit{nice}.
 
 \begin{figure}[t!]
 \centering
@@ -464,7 +464,7 @@ Prior to running the analysis, all dialog text from the subtitles was broken
 up into words and punctuation through a process known as
 \textit{tokenization}. Afterwards, to account for morphological variants, all
 words were reduced to their canonical forms through a linguistic procedure
-called stemming. Subsequently, the stem of each tag associated with the
+called \textit{stemming}. Subsequently, the stem of each tag associated with the
 aforementioned videos was compared against all words in the subtitles in the
 appropriate video that appear at most 10 seconds before the tag was entered.
 The time interval of 10 seconds was chosen as a reasonable amount of time
@@ -576,7 +576,7 @@ and the specific level, but rarely abstract. Most of the tags in the Where
 facet are generic, and little are specific place or country names. Finally, we
 encountered 195 tags that we could not classify in any of the facets. Most of
 the time, these tags were modifiers --- typically adjectives and adverbs ---
-that describe how an action was performed, for example nice, better etc.
+that describe how an action was performed, for example \textit{nice}, \textit{better}, etc.
 
 Our results show similarities with classification of image annotations by
 Hollink et al.~\cite{laurapaper}. They also found that a large majority of the
@@ -587,7 +587,7 @@ the directly perceivable objects instead of the overall scene. The evaluation
 of the tags by a professional cataloguer also suggested that the users focus
 on what can be directly seen or heard. Hollink et. al also found the majority of the descriptions to be at the general level (74\%).
 
-\section{Discussion and future work}
+\section{Conclusions and Discussion}
 \label{sec:discussion}
 
 In this section we summarize the main observations from our experiments and
@@ -599,7 +599,7 @@ From the comparison of the tags with the terms from the GTAA thesaurus of the
 institute and the linguistic database of Dutch, Cornetto, we made several
 observations. We can confirm that the aim of the institute to collect metadata
 in a user vocabulary can be achieved with the \emph{Waisda?} video labeling game.
-Comparable to the results that were found in the Steve.museum tagging project
+Comparable to the results that were found in the Steve.museum tagging project,
 we found small overlap with the terms in the vocabulary used by professional
 cataloguers. In addition, almost half of the verified tags are valid Dutch
 words, as they were found in Cornetto. 
@@ -607,10 +607,22 @@ words, as they were found in Cornetto.
 The number of verified tags found in Cornetto is much higher than the
 number of tags that are not verified. This provides evidence
 for the assumption of video labeling games that user agreement on tags can be
-used to filter out non-well-formed. We also observed that a large part of
+used to filter out ill-formed ones. We also observed that a large part of
 the tags that are not verified could still be potentially useful. A large part
 of the non-verified tags could also be found in the vocabularies. In addition,
 we deemed most tags meaningful as they returned results from Google.
+
+Together with The Netherlands Institute for Sound and Vision we prepared
+a second pilot project with \emph{Waisda?}. The results of this study show
+several limitations of the current metadata, that we aimed to address in the second
+pilot. One limitation is the low number of specific type of tags in the
+\emph{who} and \emph{where} facets. We investigated how users can be
+motivated to provide such tags. We showed that by matching the tags to
+controlled vocabularies we can derive the type of the tags. This can be used within the game
+to detect what type of tags are entered,
+and for example provide more points when the user enters a location name. For
+this purpose the recall of the current algorithm to match tags and terms
+should be improved. More details about this can be found in Chapter \ref{chap:waisda}.
 
 The manual classification of the tags provides details about the type of tags
 that were collected in \emph{Waisda?} and how they relate to the video
@@ -620,37 +632,23 @@ generic tags. Although the tags also provide some coverage of the subject, the
 the persons occurring as the subject are described both in generic and
 specific tags, there are very few tags describing specific locations.
 
-Together with The Netherlands Institute for Sound and Vision we are preparing
-a second pilot project with \emph{Waisda?}. The results of this study show
-several limitations of the current metadata, that we aim to address in this
-pilot. One limitation is the low number of specific type of tags in the
-\emph{who} and \emph{where} facets. We are exploring how users can be
-motivated to provide such tags. We showed that by matching the tags to
-controlled vocabularies we can derive the type of the tags. We are exploring
-if this can be used within the game to detect what type of tags are entered,
-and for example provide more points when the user enters a location name. For
-this purpose the recall of the current algorithm to match tags and terms
-should be improved.
-
 Another characteristic of the current \emph{Waisda?} tags is that many are
-also found in the subtitles. In case these subtitles are also available for
+also found in the subtitles. In case the subtitles are also available for
 retrieval this can be considered a limitation of the tags, as it reduces the
 added value. Computing the overlap between the tags and the subtitles during
 the game can be used to detect such tags, and for example be used to motivate
 users to provide different tags.
 
-An assumption of labeling games is that only the verified tags are associated
-to the content as metadata. Our study shows that this approach would exclude
+An assumption of the ESP labeling games is that only the verified tags are associated
+to the content as metadata. Our study shows that this approach is restrictive and would exclude
 many potentially useful tags. A solution could be to include tags that can be
 matched with a term from a controlled vocabulary. Another solution could be to
 compare the syntactically different tags based on their semantic similarity.
-We are currently exploring the consequences of these methods.
 
-Finally, in future work we will experiment with the usefulness of the tags in
+In the following chapters we will look into the usefulness of the tags in
 search tasks. From the current results we learned that tags describe what
-users directly see or hear in the video. They do not provide a topical description
-of a fragment. We expect that the current tags are, therefore, suited to find
+users directly see or hear in the video. They rarely provide a topical description
+of a fragment. We expect that the user tags are, therefore, suited to find
 objects within a specific video, but are as of yet less useful to find
-specific fragments. In future work we will explore methods to also collect
-topical descriptions of video scenes, by extending the game and/or with
-post-processing of the tags after the game.
+fragments which are about particular topic. In Chapter \ref{chap:topicir-filter} we explore methods to detect
+topical descriptions of video scenes and exploit them for topical fragment retrieval.
