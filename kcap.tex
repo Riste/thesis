@@ -430,6 +430,8 @@ non-verified tags could still be potentially useful, as some of them can be
 found in GTAA or Cornetto. Moreover, the majority of non-verified tags were
 `deemed' meaningful by Google.
 
+It should be noted that besides case-insensitive string comparison we also considered more approximative methods such as comparison based on word \textit{stems} and \textit{lemmas}. The former are result of applying the linguistic procedure known as stemming and the latter are result of the linguistic procedure called lemmatisation. We also carried out string comparison based on  the following string distance measures: Hamming distance, Levenshtein distance, and q-gram distance. We opted for low-level of dissimilarity since we did not want to get too many incorrect matches. Each of these string comparison techniques yielded slightly different numbers compared to the numbers reported above and given by Figure \ref{venndiagram}. However, the general conclusions about the low overlap between the user tags on one side and GTAA and Cornetto on the other remained the same. 
+
 
 \subsection{Tags in subtitles}
 \label{tags-in-transcripts}
@@ -462,9 +464,9 @@ respective video subtitles for hearing impaired persons (see section
 
 Prior to running the analysis, all dialog text from the subtitles was broken
 up into words and punctuation through a process known as
-\textit{tokenization}. Afterwards, to account for morphological variants, all
+tokenization. Afterwards, to account for morphological variants, all
 words were reduced to their canonical forms through a linguistic procedure
-called \textit{stemming}. Subsequently, the stem of each tag associated with the
+called stemming. Subsequently, the stem of each tag associated with the
 aforementioned videos was compared against all words in the subtitles in the
 appropriate video that appear at most 10 seconds before the tag was entered.
 The time interval of 10 seconds was chosen as a reasonable amount of time
