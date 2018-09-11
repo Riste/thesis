@@ -14,9 +14,30 @@
 \usepackage{epstopdf}
 \usepackage[toc,page]{appendix}
 \usepackage{float}
+\usepackage{titleps}
 
 \usepackage{listings}
 \usepackage{xcolor}
+
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\newpagestyle{siks}{%
+  %\headrule
+  \sethead[\thepage][][SIKS Dissertatiereeks]{SIKS Dissertatiereeks}{}{\thepage}
+  %\setfoot{}{}{}
+  }
+  
+  \newpagestyle{summary}{%
+  %\headrule
+  \sethead[\thepage][][Summary]{Summary}{}{\thepage}
+  %\setfoot{}{}{}
+  }
+  \newpagestyle{samenvatting}{%
+  %\headrule
+  \sethead[\thepage][][Samenvatting]{Samenvatting}{}{\thepage}
+  %\setfoot{}{}{}
+  }
 
 \interfootnotelinepenalty=10000
 
@@ -55,6 +76,7 @@
 }
 
 
+
 %\usepackage{abstract}
 %\renewcommand{\abstractname}{}    % clear the title
 %\renewcommand{\absnamepos}{empty} % originally center
@@ -63,12 +85,72 @@
 
 \frontmatter
 
-\title{Serious Games in Audio-Visual Collections}
+\noindent
+\includegraphics[width=0.2\textwidth]{sikszw}\hspace{1cm}
+SIKS Dissertation Series No. 2018-25
+\vspace{3mm}
 
-\author{Riste Gligorov}
+\noindent
+The research reported in this thesis has been carried out under the auspices of SIKS, the Dutch Research School for Information and Knowledge Systems.
+\vspace{1.5cm}
 
-\maketitle
+\noindent
+Promotiecommissie:\\
+prof.dr. A. Th. Schreiber (promotor)\\
+prof.dr. L.M. Aroyo (promotor)\\
+dr. J.R. van Ossenbruggen (copromotor)\\
+prof.dr. F.A.H van Harmelen\\
+prof.dr.ir G.J.P.M. Houben \\
+dr. R. Ordelman\\
+prof.dr. E. Simperl\\
+prof.dr. C.G.M. Snoek\\
+\vfill
 
+\noindent
+ISBN Enter here
+
+\noindent
+Copyright \copyright ~2018 by Risto Gligorov
+
+
+\begin{titlepage}
+\pagestyle{empty}
+\topmargin=0.48cm
+\centering
+VRIJE UNIVERSITEIT\\
+\vspace{49pt}
+\centering
+{\bf Serious Games in Audio-Visual Collections}\\
+\vspace{85pt}
+\centering
+ACADEMISCH PROEFSCHRIFT\\
+
+\begin{center}
+ter verkrijging van de graad Doctor\\
+aan de Vrije Universiteit Amsterdam,\\
+op gezag van de rector magnificus\\
+prof.dr. V. Subramaniam,\\
+in het openbaar te verdedigen\\
+ten overstaan van de promotiecommissie\\
+van de Faculteit der Bètawetenschappen\\
+op dinsdag 20 november 2018 om 13.45 uur\\
+in de aula van de universiteit,\\
+De Boelelaan 1105
+\end{center}
+\vspace{99pt}
+door\\
+\bigskip
+{\bf Risto Gligorov}\\
+\bigskip
+geboren te Valandovo, Macedoni\"{e}
+\clearpage
+\raggedright
+\begin{tabbing}
+promotoren: \= prof.dr. A.Th. Schreiber\\
+\> prof.dr. L.M. Aroyo\\
+copromotor: \> dr. J.R. van Ossenbruggen
+\end{tabbing}
+\end{titlepage}
 \tableofcontents
 
 % table spacing
@@ -107,7 +189,23 @@
 \include{appendixd}
 \end{appendices}
 
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{plain}
 \bibliography{thesis}
+
+\pagestyle{empty}
+\clearpage
+\markboth{Summary}{}
+\include{summary}
+
+\pagestyle{empty}
+\clearpage
+\markboth{Samenvatting}{}
+\include{samenvatting}
+
+\pagestyle{empty}
+\clearpage
+\markboth{SIKS Dissertatiereeks}{}
+\include{dissertations}
 
 \end{document}
